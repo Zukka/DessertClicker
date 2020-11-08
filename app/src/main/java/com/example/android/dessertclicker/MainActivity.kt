@@ -18,7 +18,6 @@ package com.example.android.dessertclicker
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -89,10 +88,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-    //    dessertTimer.startTimer()
         Timber.i("onStart Called")
 
     }
+
     override fun onResume() {
         super.onResume()
         Timber.i("onResume Called")
@@ -105,7 +104,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-    //    dessertTimer.stopTimer()
         Timber.i("onStop Called")
     }
 
@@ -119,6 +117,10 @@ class MainActivity : AppCompatActivity() {
         Timber.i("onRestart Called")
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(Companion.KEY_REVENUE, revenue)
@@ -126,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         outState.putInt(Companion.KEY_TIMER_SECONDS, dessertTimer.secondsCount)
         Timber.i("onSaveInstanceState Called")
     }
+
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
      */
